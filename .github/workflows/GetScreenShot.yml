@@ -3,7 +3,7 @@
 #* FileInstructions: Github Action自动获取某网站主页截图
 #* Attention：开始之前要确保 Github 和 Gitee 中已经保存了本机的公钥.ssh/id_rsa.pub
 #* Environment Variables：
-#*                       SCREEN_SHOT_TOKEN:Github中Personal access tokens
+#*                       PERSONAL_ACCESS_TOKENS_GITHUB:Github中Personal access tokens
 #* =======================================================================*/
 name: GetScreenShot
 on:
@@ -12,6 +12,9 @@ on:
   push:
     branches:
       - master
+
+permissions:   # 设置权限, 允许 GitHub Actions 写入仓库内容
+  contents: write
 
 jobs:
   download:
@@ -22,17 +25,13 @@ jobs:
       env:
         SCREEN_SHOT_ADDRESS: https://image.thum.io/get/width/400/crop/800/allowJPG/wait/20/noanimate
       run: |
-        curl ${SCREEN_SHOT_ADDRESS}/https://akilar.top/ -o akilar.top.jpg
+        curl ${SCREEN_SHOT_ADDRESS}/https://docs-site.github.io/site-vuepress/ -o site-vuepress.jpg
+        curl ${SCREEN_SHOT_ADDRESS}/https://docs-site.github.io/site-vitepress/ -o site-vitepress.jpg
         curl ${SCREEN_SHOT_ADDRESS}/https://hexo.io/ -o hexo.io.jpg
-        curl ${SCREEN_SHOT_ADDRESS}/https://qidaink.github.io/ -o qidaink.github.io.jpg
-        curl ${SCREEN_SHOT_ADDRESS}/https://qidaink-vercel-pages.vercel.app/ -o qidaink-vercel-pages.vercel.app.jpg
-        curl ${SCREEN_SHOT_ADDRESS}/https://qidaink.gitee.io/ -o qidaink.gitee.io.jpg
-        curl ${SCREEN_SHOT_ADDRESS}/https://zfe.space/ -o zfe.space.jpg
-        curl ${SCREEN_SHOT_ADDRESS}/https://noionion.top/ -o noionion.top.jpg
         
-        curl https://purge.jsdelivr.net/gh/qidaink/FanhuaScreenShot@gh-pages/*.*
+        curl https://purge.jsdelivr.net/gh/docs-site/screen-shot@gh-pages/*.*
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.SCREEN_SHOT_TOKEN }}
+        github_token: ${{ secrets.PERSONAL_ACCESS_TOKENS_GITHUB }}
         publish_dir: ./

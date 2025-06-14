@@ -39,7 +39,7 @@ curl https://image.thum.io/get/width/400/crop/800/allowJPG/wait/20/noanimate/htt
 https://cdn.jsdelivr.net/gh/[GithubUserName]/[ScreenShot-RepositoryName]@gh-pages/[friend_link].jpg
 
 <!-- 例如 -->
-https://cdn.jsdelivr.net/gh/qidaink/FanhuaScreenShot@gh-pages/qidaink.gitee.io.jpg
+https://cdn.jsdelivr.net/gh/docs-site/screen-shot@gh-pages/hexo.io.jpg
 ```
 
 **【注意】**
